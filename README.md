@@ -113,6 +113,9 @@ Next Steps
 Building up lm.js to cover more traditional templating functionality and move
 up the performance table at JSPerf.
 
+LM.JS List/Array based JavaScript markup by Joel Hughes - http://github.com/rudenoise/LM.JS - http://joelughes.co.uk
+LM.JS by Joel Hughes is licensed under a Creative Commons Attribution 3.0 Unported License
+
    [1]: http://www.delicious.com/rudenoise/template
    [2]: http://trapm.com/vana-templating-an-utterly-sensible-templatin
    [3]: https://github.com/rudenoise/LM.JS 
