@@ -15,7 +15,7 @@ Using lm.js
 -----------
 
 The aim was to be able to produce a :vana like data structure that could
-represent HTML. JS Arrays are most like Lisp's lists, objects made good key-
+represent HTML accross all browsers. JS Arrays are most like Lisp's lists, objects made good key-
 value stores for attributes and nesting is handled by nesting the arrays.
 Recurse the array and evaluate each portion to a DOM node. No string parse
 step, only a small regular expression and little need for strict convention.
