@@ -64,7 +64,6 @@ inline.
     
     // <p>hello</p>
 
-LM.JS List/Array based JavaScript markup by [Joel Hughes][7] - http://github.com/rudenoise/LM.JS - http://joelughes.co.uk
 LM.JS by [Joel Hughes][7] is licensed under a Creative Commons Attribution 3.0 Unported License
 
    [1]: http://www.delicious.com/rudenoise/template
