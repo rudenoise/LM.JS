@@ -115,7 +115,7 @@ up the performance table at JSPerf.
 
    [1]: http://www.delicious.com/rudenoise/template
    [2]: http://trapm.com/vana-templating-an-utterly-sensible-templatin
-   [3]: 
+   [3]: https://github.com/rudenoise/LM.JS 
    [4]: http://jsperf.com/dom-vs-innerhtml-based-templating/130
    [5]: http://www.youtube.com/watch?v=mHtdZgou0qU
    [6]: http://daringfireball.net/projects/markdown/
