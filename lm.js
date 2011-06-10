@@ -7,7 +7,7 @@ var lm = (function () {
   lm = function (arr, pr) {
     // accepts an array (arr) and a parent DOM node (pr, defaults to a doc fragment)
     // returns a DOM tree attached to a document-fragment
-    // lm(['p', {class: 'demo'}, test, ['em', 'text']]); -> <p class="demo">test <em>text</em></p>
+    // lm(['p', {class: 'demo'}, 'test', ['em', 'text']]); -> <p class="demo">test <em>text</em></p>
     pr = pr || dFrag.cloneNode(false);
     var i, l, child;
     if (q.isA(arr)) {
