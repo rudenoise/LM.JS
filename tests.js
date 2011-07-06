@@ -26,6 +26,12 @@ test("Nested - recursive", function () {
 test("Attributes", function () {
   ok(lm(['p', 'text', {'id': 'test'}]).firstChild.id === 'test', "set an id");
   ok(q.isES(lm(['p', 'text', {'id': 123}]).firstChild.id), "use only string");
+  ok(lm(['p', 'text', {'style': 'border: 1px solid;'}]).firstChild.style.border === '1px solid', "set style attribute");
+  ok(lm(['p', 'text', {
+    'style': {
+      border: '1px solid'
+    }
+  }]).firstChild.style.border === '1px solid', "set style attribute via object");
 });
 test("Render", function () {
   ok(q.isF(lm.render), "render exists");

@@ -43,6 +43,7 @@ var lm = (function () {
   parseTag = function (arr) {
     // only recieve valid tag arr, create DOM node
     // decorate node with attributes and children, return DOM node
+    // attributes can be set as strings (lm('p', {style: font-weight: bold;})) and objects (lm('p', {style: {'font-weight': 'bold'}}))
     var tag, i, l = arr.length, part, k;
     for (i = 0; i < l; i += 1) {
       part = arr[i];
@@ -57,8 +58,12 @@ var lm = (function () {
           tag.appendChild(parseArr(part));
         } else if (q.isO(arr[i])) {// loop object and treat as attributes key:val
           for (k in part) {
-            if (part.hasOwnProperty(k) && q.isS(part[k])) {
-              tag.setAttribute(k, part[k]);
+            if (part.hasOwnProperty(k)) {
+              if (q.isS(part[k])) {// attribute is a string
+		tag.setAttribute(k, part[k]);
+	      } else if (q.isO(part[k])) {// attribute is an object, convert to CSS string
+		tag.setAttribute(k, parseAttribute(part[k]))
+	      }
             }
           }
         }
@@ -68,7 +73,7 @@ var lm = (function () {
   };
   isTag = function (arr) {
     // validate tag array
-    return q.isA(arr) && q.isS(arr[0]) && (arr[0].match(re) !== null);
+    return q.isA(arr) && q.isS(arr[0]) && re.test(arr[0]);
   };
   makeNode = (function () {
     // return a function taht generates DOM nodes
@@ -119,6 +124,15 @@ var lm = (function () {
   };
   q.isDOM = function (node) {
     return q.isU(node) === false && q.isU(node.nodeType) === false;
+  };
+  parseAttribute = function (attr) {
+    var rtn = [], k;
+    for (k in attr) {
+      if (attr.hasOwnProperty(k)) {
+	rtn.push(k + ': ' + attr[k] + '; ');
+      }
+    }
+    return rtn.join();
   };
   // END PRIVATE
   return lm;
