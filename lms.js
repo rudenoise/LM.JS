@@ -8,8 +8,11 @@ var lms = (function () {
       rtn = rtn.concat(parseTag(arr));
     } else {
       if (q.isA(arr) && !q.isEA(arr)) {
-	if (isA(arr[i]) && isTag(arr[i])) {
-	  rtn = rtn.concat(parseTag(arr[i]));
+	l = arr.length;
+	for (i = 0; i < l; i += 1) {
+	  if (q.isA(arr[i]) && isTag(arr[i])) {
+	    rtn = rtn.concat(parseTag(arr[i]));
+	  }
 	}
       }
     }
@@ -18,18 +21,40 @@ var lms = (function () {
   // private
   re = new RegExp("^[a-zA-Z]((?![ ]).)*$"),// match valid tag name
   parseTag = function (arr) {
-    var i, l, rtn = [];
-    l = arr.length;
+    var i, rtn = [], children = [], attrs = [],
+      name = q.h(arr), tail = q.t(arr),
+      l = tail.length;
+    // loop and concat all strings and tags,
+    // but collect attributes into one object
+    rtn = ['<', name];
     for (i = 0; i < l; i += 1) {
-      rtn.push('<');
-      rtn.push(arr[i]);
-      rtn.push('>');
-      rtn.push('</');
-      rtn.push(arr[i]);
-      rtn.push('>');
+      if (q.isS(tail[i])) {
+	children.push(tail[i]);
+      } else if (isTag(tail[i])) {
+	children.push(parseTag(tail[i]).join(''));
+      } else if (q.isA(tail[i])) {
+	children.push(lm(tail[i]));
+      } else if (q.isO(tail[i])) {
+	attrs.push(parseAttrs(tail[i]));
+      }
     }
+    if (attrs.length > 0) {
+      rtn.push(attrs.join(' '));
+    }
+    rtn.push('>', children.join(''), '</', name, '>');
     return rtn;
   };
+  parseAttrs = function (o) {
+    var k, str = [];
+    for (k in o) {
+      if (o.hasOwnProperty(k)) {
+	if (q.isS(o[k])) {
+	  str.push(' ', k + '="' + o[k] + '"');
+	}
+      }
+    }
+    return str.join('');
+  }
   isTag = function (arr) {
     // validate tag array
     return q.isA(arr) && q.isS(arr[0]) && re.test(arr[0]);
