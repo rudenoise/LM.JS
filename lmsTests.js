@@ -15,5 +15,16 @@ test('parse tag', function () {
 });
 test('Attributes', function () {
   ok(lms(['p', {id: 'big'}, 'hmm?']) === '<p id="big">hmm?</p>', 'accepts basic attributes');
-  ok(lms(['p', {id: 'big'}, 'hmm?', {rel: 'yo'}]) === '<p id="big", rel="yo">hmm?</p>', 'accepts attributes, broken over array');
+  ok(lms(['p', {id: 'big'}, 'hmm?', {rel: 'yo'}]) === '<p id="big" rel="yo">hmm?</p>', 'accepts attributes, broken over array');
 });
+test('Attribute objects', function () {
+  ok(lms(['p', {
+    style: {
+      color: 'red',
+      border: 'solid'
+    }
+  }]) === '<p style="color: red; border: solid;"></p>', 'lms handles attribute objects');
+});
+// TODO
+// handle self closing tags (br, hr, img, ..?)
+// make one big array and flatten (compare speed)

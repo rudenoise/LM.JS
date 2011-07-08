@@ -39,7 +39,7 @@ var lms = (function () {
       }
     }
     if (attrs.length > 0) {
-      rtn.push(attrs.join(' '));
+      rtn.push(attrs.join(''));
     }
     rtn.push('>', children.join(''), '</', name, '>');
     return rtn;
@@ -49,12 +49,23 @@ var lms = (function () {
     for (k in o) {
       if (o.hasOwnProperty(k)) {
 	if (q.isS(o[k])) {
-	  str.push(' ', k + '="' + o[k] + '"');
+	  str.push(' ', k, '="', o[k], '"');
+	} else if (q.isO(o[k])) {
+	  str.push(' ', k, '="', parseAttrObj(o[k]), '"');
 	}
       }
     }
     return str.join('');
-  }
+  };
+  parseAttrObj = function (attr) {
+    var rtn = [], k;
+    for (k in attr) {
+      if (attr.hasOwnProperty(k)) {
+	rtn.push(k + ': ' + attr[k] + ';');
+      }
+    }
+    return rtn.join(' ');
+  };
   isTag = function (arr) {
     // validate tag array
     return q.isA(arr) && q.isS(arr[0]) && re.test(arr[0]);
