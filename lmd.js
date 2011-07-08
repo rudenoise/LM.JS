@@ -23,11 +23,6 @@ var lmd = (function () {
     }
     return false;
   };
-  lm.render = function (tplFun, data) {
-    // accepts a tplFun/function and data/object
-    // returns the output from the data passed through the tplFun
-    return q.isF(tplFun) && q.isO(data) ? tplFun(data) : false;
-  };
   // START PRIVATE
   parseArr = function (arr) {
     // loop arr and attach to document fragment, then return document fragment

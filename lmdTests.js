@@ -33,13 +33,3 @@ test("Attributes", function () {
     }
   }]).firstChild.style.border === '1px solid', "set style attribute via object");
 });
-test("Render", function () {
-  ok(q.isF(lmd.render), "render exists");
-  ok((lmd.render() && lmd.render(12, "")) === false, "rejects no/bad args");
-  ok(q.isDOM(lmd.render(function (obj) {
-    return lmd(['p', obj.text]);
-  }, {text: 'hello'})), "returns dom for correct tpl and data");
-  ok(lmd.render(function (obj) {
-    return lmd(['p', obj.text]);
-  }, {text: 'hello'}).firstChild.innerHTML === "hello", "returns dom for correct tpl and data with correct values");
-});

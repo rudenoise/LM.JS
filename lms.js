@@ -23,11 +23,6 @@ var lms = (function () {
     }
     return rtn.join('');
   };
-  lm.render = function (tplFun, data) {
-    // accepts a tplFun/function and data/object
-    // returns the output from the data passed through the tplFun
-    return q.isF(tplFun) && q.isO(data) ? tplFun(data) : false;
-  };
   // private
   re = new RegExp("^[a-zA-Z]((?![ ]).)*$");// match valid tag name
   parseTag = function (arr) {
@@ -95,10 +90,6 @@ var lms = (function () {
   q.isU = function (u) {
     // return true id u q.is undefined
     return typeof (u) === "undefined";
-  };
-  q.isF = function (f) {
-    // q.is f a function?
-    return typeof(f) === "function";
   };
   q.isO = function (o) {
     // q.is "o" an Object?
