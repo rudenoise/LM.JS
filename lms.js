@@ -96,6 +96,10 @@ var lms = (function () {
     // return true id u q.is undefined
     return typeof (u) === "undefined";
   };
+  q.isF = function (f) {
+    // q.is f a function?
+    return typeof(f) === "function";
+  };
   q.isO = function (o) {
     // q.is "o" an Object?
     return q.isU(o) === false && q.toS(o) === "[object Object]" &&
