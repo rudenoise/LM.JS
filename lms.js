@@ -1,8 +1,13 @@
+// LM.JS (lms - string based) List/Array based JavaScript templating/markup by Joel Hughes - http://github.com/rudenoise/LM.JS - http://joelughes.co.uk
+// LM.JS by Joel Hughes is licensed under a Creative Commons Attribution 3.0 Unported License
 var lms = (function () {
   // setup vars
   var lm, q = {}, isTag, parseTag, parseAttrs, parseAttrObj, re;
   // root function
   lm = function (arr) {
+  // accepts an array (arr)
+  // returns a string representation of a dom tree
+  // lm(['p', {class: 'demo'}, 'test', ['em', 'text']]); -> <p class="demo">test <em>text</em></p>
     var rtn = [], l, i;
     if (isTag(arr)) {
       rtn = rtn.concat(parseTag(arr));
@@ -21,6 +26,8 @@ var lms = (function () {
   // private
   re = new RegExp("^[a-zA-Z]((?![ ]).)*$");// match valid tag name
   parseTag = function (arr) {
+    // base function filters for arrays that look like tags
+    // e.g. ['p', 'some text'], not [1, 2, 3]
     var i, rtn = [], children = [], attrs = [],
       name = q.h(arr), tail = q.t(arr),
       l = tail.length;
@@ -45,6 +52,9 @@ var lms = (function () {
     return rtn;
   };
   parseAttrs = function (o) {
+    // takes attribute objects from parse tag
+    // loops keys and returns a string
+    // parseAttrs({id: 'yo'}) -> ' id="yo"'
     var k, str = [];
     for (k in o) {
       if (o.hasOwnProperty(k)) {
@@ -58,6 +68,9 @@ var lms = (function () {
     return str.join('');
   };
   parseAttrObj = function (attr) {
+    // takes an attribute child object
+    // loops and returns string
+    // parseAttrObj({color: 'red'}) -> 'color: red;'
     var rtn = [], k;
     for (k in attr) {
       if (attr.hasOwnProperty(k)) {

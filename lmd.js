@@ -1,4 +1,4 @@
-// LM.JS List/Array based JavaScript templating/markup by Joel Hughes - http://github.com/rudenoise/LM.JS - http://joelughes.co.uk
+// LM.JS (lmd - DOM based) List/Array based JavaScript templating/markup by Joel Hughes - http://github.com/rudenoise/LM.JS - http://joelughes.co.uk
 // LM.JS by Joel Hughes is licensed under a Creative Commons Attribution 3.0 Unported License
 var lmd = (function () {
   var lm, q = {}, makeNode, parseArr, parseTag, parseAttribute, isTag,
