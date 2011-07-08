@@ -1,4 +1,4 @@
-document.getElementsByTagName("body")[0].appendChild(lm([
+document.getElementsByTagName("body")[0].appendChild(lmd([
   ['h2', 'lm.js, wirte HTML in JavaScript using ', ['em' ,'L'], 'ess ', ['em', 'Markup']],
   ['p', 'Producing HTML from JavaScript is clumbersom, either writing out the mark-up using strings, or generating DOM nodes directly. ', ['a', {href: 'http://www.delicious.com/rudenoise/template', target: 'blank'}, 'Templating engines'], ' reduce effort and abstract away some of the inconvenience, but have shortcomings when mixing logic with the generations of HTML/DOM (whether or not logic should be in a templating engine is another issue).'],
   ['p', 'To get to the point: I saw ', ['a', {href: 'http://trapm.com/vana-templating-an-utterly-sensible-templatin'}, ':vana-templating'], ' an elegant and expressive tool for Common Lisp, I wanted a JS version and built it. ', ['a', {href: "", target: 'blank'}, 'lm.js JavaScript is on GitHub for your perusal.']],
