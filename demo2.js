@@ -1,10 +1,10 @@
-document.getElementsByTagName("body")[0].appendChild(lmd([
+var before, after, body = document.body, arr = [
   ['h2', 'lm.js, wirte HTML in JavaScript using ', ['em' ,'L'], 'ess ', ['em', 'Markup']],
   ['p', 'Producing HTML from JavaScript is clumbersom, either writing out the mark-up using strings, or generating DOM nodes directly. ', ['a', {href: 'http://www.delicious.com/rudenoise/template', target: 'blank'}, 'Templating engines'], ' reduce effort and abstract away some of the inconvenience, but have shortcomings when mixing logic with the generations of HTML/DOM (whether or not logic should be in a templating engine is another issue).'],
   ['p', 'To get to the point: I saw ', ['a', {href: 'http://trapm.com/vana-templating-an-utterly-sensible-templatin'}, ':vana-templating'], ' an elegant and expressive tool for Common Lisp, I wanted a JS version and built it. ', ['a', {href: "", target: 'blank'}, 'lm.js JavaScript is on GitHub for your perusal.']],
   ['h3', 'Using lm.js'],
   ['p', "The aim was to be able to produce a :vana like data structure that could represent HTML. JS Arrays are most like Lisp's lists, objects made good key-value stores for attributes and nesting is handled by nesting the arrays. Recurse the array and evaluate each portion to a DOM node. No string parse step, only a small regular expression and little need for strict convention."],
-  ['pre', "lm(['ul',\n  ['li',\n    ['p', 'one']],\n  ['li',\n    ['p', 'two']]]);\n\n// Returns this DOM tree:\n// <ul>\n//   <li>\n//     <p>one</p>\n//   </li>\n//   <li>\n//     <p>two</p>\n//   </li>\n// </ul>"],
+  ['pre', "lm(['ul',\n  ['li',\n    ['p', 'one']],\n  ['li',\n    ['p', 'two']]]);\n\n// Returns this DOM tree:\n// \<ul>\n//   <li>\n//     <p>one</p>\n//   </li>\n//   <li>\n//     <p>two</p>\n//   </li>\n// </ul>"],
   ['p', {id: 'nest'}, 'Add some attributes and nest within text:'],
   ['pre', "lm(['p', 'Some text ', ['em', 'emphasised'], ' and a ', ['a', {href: '#nest'}, 'link']]);\n\n// <p>Some text <em>emphasised</em> and a <a href='#nest'>link</a></p>"],
   ['p', "What about logic? As the Array is JS, simply build the array using JavaScript's logic, no need to implement a mini-language."],
@@ -33,4 +33,14 @@ document.getElementsByTagName("body")[0].appendChild(lmd([
     ['li', 'Templates are tightly bound to JS, it would be hard to replicate the exact logic in another environment'],
     ['li', 'Only works in browser, e.g. node.js would require a rewrite using string concatenation']],
   ['h3', 'Next Steps'],
-  ['p', 'Building up lm.js to cover more traditional templating functionality and move up the performance table at JSPerf.']]));
+  ['p', 'Building up lm.js to cover more traditional templating functionality and move up the performance table at JSPerf.']];
+before = new Date().getTime();
+body.innerHTML = lms(arr);
+after = new Date().getTime();
+console.log('LM-String demo render: ', after - before, 'ms');
+body.innerHTML = '';
+before = new Date().getTime();
+body.appendChild(lmd(arr));
+after = new Date().getTime();
+console.log('LM-DOM demo render: ', after - before, 'ms');
+

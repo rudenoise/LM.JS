@@ -27,4 +27,5 @@ test('Attribute objects', function () {
 });
 // TODO
 // handle self closing tags (br, hr, img, ..?)
+// http://www.w3schools.com/tags/default.asp (HTML 4)
 // make one big array and flatten (compare speed)
