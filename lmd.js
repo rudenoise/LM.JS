@@ -1,7 +1,7 @@
 // LM.JS List/Array based JavaScript templating/markup by Joel Hughes - http://github.com/rudenoise/LM.JS - http://joelughes.co.uk
 // LM.JS by Joel Hughes is licensed under a Creative Commons Attribution 3.0 Unported License
 var lmd = (function () {
-  var lm, q = {}, makeNode, parseArr, parseTag, isTag,
+  var lm, q = {}, makeNode, parseArr, parseTag, parseAttribute, isTag,
     re = new RegExp("^[a-zA-Z]((?![ ]).)*$"),// match valid tag name
     dFrag = document.createDocumentFragment();// 
   lm = function (arr, pr) {
@@ -9,9 +9,8 @@ var lmd = (function () {
     // returns a DOM tree attached to a document-fragment
     // lm(['p', {class: 'demo'}, 'test', ['em', 'text']]); -> <p class="demo">test <em>text</em></p>
     pr = pr || dFrag.cloneNode(false);
-    var i, l, child;
+    var child;
     if (q.isA(arr)) {
-      l = arr.length;
       if (isTag(arr)) {
         child = parseTag(arr);
       } else {
@@ -60,10 +59,10 @@ var lmd = (function () {
           for (k in part) {
             if (part.hasOwnProperty(k)) {
               if (q.isS(part[k])) {// attribute is a string
-		tag.setAttribute(k, part[k]);
-	      } else if (q.isO(part[k])) {// attribute is an object, convert to CSS string
-		tag.setAttribute(k, parseAttribute(part[k]))
-	      }
+                tag.setAttribute(k, part[k]);
+              } else if (q.isO(part[k])) {// attribute is an object, convert to CSS string
+                tag.setAttribute(k, parseAttribute(part[k]));
+              }
             }
           }
         }
@@ -92,6 +91,16 @@ var lmd = (function () {
       return node;
     };
   }());
+  parseAttribute = function (attr) {
+    // loop an attribute object and return a string
+    var rtn = [], k;
+    for (k in attr) {
+      if (attr.hasOwnProperty(k)) {
+        rtn.push(k + ': ' + attr[k] + '; ');
+      }
+    }
+    return rtn.join();
+  };
   // following functions taken from Q.JS http://github.com/rudenoise/Q.JS
   q.toS = function (x) {
     // shortcut q.toString
@@ -103,7 +112,7 @@ var lmd = (function () {
   };
   q.isF = function (f) {
     // q.is f a function?
-    return typeof(f) === "function";
+    return typeof (f) === "function";
   };
   q.isO = function (o) {
     // q.is "o" an Object?
@@ -124,15 +133,6 @@ var lmd = (function () {
   };
   q.isDOM = function (node) {
     return q.isU(node) === false && q.isU(node.nodeType) === false;
-  };
-  parseAttribute = function (attr) {
-    var rtn = [], k;
-    for (k in attr) {
-      if (attr.hasOwnProperty(k)) {
-	rtn.push(k + ': ' + attr[k] + '; ');
-      }
-    }
-    return rtn.join();
   };
   // END PRIVATE
   return lm;

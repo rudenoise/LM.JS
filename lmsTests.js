@@ -16,8 +16,6 @@ test('parse tag', function () {
 test('Attributes', function () {
   ok(lms(['p', {id: 'big'}, 'hmm?']) === '<p id="big">hmm?</p>', 'accepts basic attributes');
   ok(lms(['p', {id: 'big'}, 'hmm?', {rel: 'yo'}]) === '<p id="big" rel="yo">hmm?</p>', 'accepts attributes, broken over array');
-});
-test('Attribute objects', function () {
   ok(lms(['p', {
     style: {
       color: 'red',
@@ -28,4 +26,5 @@ test('Attribute objects', function () {
 // TODO
 // handle self closing tags (br, hr, img, ..?)
 // http://www.w3schools.com/tags/default.asp (HTML 4)
-// make one big array and flatten (compare speed)
+// make one big array and flatten (compare speed) - q.flat too slow
+// look at contents of pre tag
