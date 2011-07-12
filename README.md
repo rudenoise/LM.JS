@@ -58,9 +58,9 @@ lm.js differs from templating solutions as JavaScript logic can be used
 inline.
 
     
-    lm.render(function (obj) {
+    (function (obj) {
       return lm(['p', obj.text]);
-    }, {text: 'hello'});
+    } ({text: 'hello'});
     
     // <p>hello</p>
 
