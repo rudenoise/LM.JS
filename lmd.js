@@ -94,7 +94,7 @@ var lmd = (function () {
         rtn.push(k + ': ' + attr[k] + '; ');
       }
     }
-    return rtn.join();
+    return rtn.join('');
   };
   // following functions taken from Q.JS http://github.com/rudenoise/Q.JS
   q.toS = function (x) {
