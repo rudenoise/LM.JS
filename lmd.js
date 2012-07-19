@@ -117,10 +117,10 @@ var lmd = (function () {
   q.isA = function (a) {
     // q.is "a" an Array?
     return q.isU(a) ?
-      false :
-      typeof a.length  === 'number' &&
-      !(a.propertyIsEnumerable('length')) &&
-      typeof a.splice  === 'function';
+        false :
+        typeof a.length  === 'number' &&
+            !(a.propertyIsEnumerable('length')) &&
+            typeof a.splice  === 'function';
   };
   q.isS = function (s) {
     // q.is s a string?
