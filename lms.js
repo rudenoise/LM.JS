@@ -15,7 +15,7 @@ var lms = (function () {
       if (q.isA(arr) && !q.isEA(arr)) {
         l = arr.length;
         for (i = 0; i < l; i += 1) {
-          if (q.isA(arr[i]) && isTag(arr[i])) {
+          if (isTag(arr[i])) {
             rtn = rtn.concat(parseTag(arr[i]));
           }
         }
