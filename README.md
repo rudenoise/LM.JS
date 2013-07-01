@@ -67,7 +67,7 @@ inline.
 LM.JS by [Joel Hughes][7] is licensed under a Creative Commons Attribution 3.0 Unported License
 
    [1]: http://www.delicious.com/rudenoise/template
-   [2]: http://trapm.com/vana-templating-an-utterly-sensible-templatin
+   [2]: https://github.com/sgrove/vana-templating
    [3]: https://github.com/rudenoise/LM.JS 
    [7]: http://www.joelhughes.co.uk
 
